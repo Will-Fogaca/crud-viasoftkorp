@@ -12,156 +12,119 @@ type
     FCodEAN: String;
     FDescricao: String;
     FIdDepto: Integer;
+    FQtdEstqAtual: Double;
     FNcm: String;
-    FCFop: String;
-    FValorIcms: Double;
-    FValorIpi: Double;
-    FValorPisCofins: Double;
+    FCfopEntrada: String;
+    FCfopSaida: String;
     FValorCusto: Currency;
     FValorVenda: Currency;
+    FMargemLucro: Double;
     FUnidadeMedida: String;
+    FObservacao: String;
+    FDataInclusao: TDateTime;
     FAtivo: Boolean;
-    procedure SetIdProduto(const Value: Integer);
-    procedure SetCodEAN(const Value: String);
-    procedure SetDescricao(const Value: String);
-    procedure SetIdDepto(const Value: Integer);
-    procedure SetNcm(const Value: String);
-    procedure SetCFop(const Value: String);
-    procedure SetValorIcms(const Value: Double);
-    procedure SetValorIpi(const Value: Double);
-    procedure SetValorPisCofins(const Value: Double);
-    procedure SetValorCusto(const Value: Currency);
-    procedure SetValorVenda(const Value: Currency);
-    procedure SetUnidadeMedida(const Value: String);
-    procedure SetAtivo(const Value: Boolean);
-  public
-    property IdProduto: Integer read FIdProduto write SetIdProduto;
-    property CodEAN: String read FCodEAN write SetCodEAN;
-    property Descricao: String read FDescricao write SetDescricao;
-    property IdDepto: Integer read FIdDepto write SetIdDepto;
-    property Ncm: String read FNcm write SetNcm;
-    property CFop: String read FCFop write SetCFop;
-    property ValorIcms: Double read FValorIcms write SetValorIcms;
-    property ValorIpi: Double read FValorIpi write SetValorIpi;
-    property ValorPisCofins: Double read FValorPisCofins write SetValorPisCofins;
-    property ValorCusto: Currency read FValorCusto write SetValorCusto;
-    property ValorVenda: Currency read FValorVenda write SetValorVenda;
-    property UnidadeMedida: String read FUnidadeMedida write SetUnidadeMedida;
-    property Ativo: Boolean read FAtivo write SetAtivo;
 
-    // Métodos para o CRUD
-    function GravarProduto: Boolean;
-    function ExcluirProduto: Boolean;
-    function BuscarProdutoPorEAN: Boolean;
+  public
+    property IdProduto: Integer read FIdProduto write FIdProduto;
+    property CodEAN: String read FCodEAN write FCodEAN;
+    property Descricao: String read FDescricao write FDescricao;
+    property IdDepto: Integer read FIdDepto write FIdDepto;
+    property QtdEstqAtual: Double read FQtdEstqAtual write FQtdEstqAtual;
+    property Ncm: String read FNcm write FNcm;
+    property CfopEntrada: String read FCfopEntrada write FCfopEntrada;
+    property CfopSaida: String read FCfopSaida write FCfopSaida;
+    property ValorCusto: Currency read FValorCusto write FValorCusto;
+    property ValorVenda: Currency read FValorVenda write FValorVenda;
+    property MargemLucro: Double read FMargemLucro write FMargemLucro;
+    property UnidadeMedida: String read FUnidadeMedida write FUnidadeMedida;
+    property Observacao: String read FObservacao write FObservacao;
+    property DataInclusao: TDateTime read FDataInclusao;
+    property Ativo: Boolean read FAtivo;
+
+    function GravarProduto(): Boolean;
+    function ExcluirProduto(): Boolean;
+    function BuscarProdutoPorEAN(CodEan: String): Boolean;
   end;
 
 implementation
 
-{ TProduto }
+uses Unit_dmPrincipal;
 
-uses Unit_dmPrincipal, Vcl.Dialogs;
 
-procedure TProduto.SetIdProduto(const Value: Integer);
-begin
-  FIdProduto := Value;
-end;
-
-procedure TProduto.SetCodEAN(const Value: String);
-begin
-  FCodEAN := Value;
-end;
-
-procedure TProduto.SetDescricao(const Value: String);
-begin
-  FDescricao := Value;
-end;
-
-procedure TProduto.SetIdDepto(const Value: Integer);
-begin
-  FIdDepto := Value;
-end;
-
-procedure TProduto.SetNcm(const Value: String);
-begin
-  FNcm := Value;
-end;
-
-procedure TProduto.SetCFop(const Value: String);
-begin
-  FCFop := Value;
-end;
-
-procedure TProduto.SetValorIcms(const Value: Double);
-begin
-  FValorIcms := Value;
-end;
-
-procedure TProduto.SetValorIpi(const Value: Double);
-begin
-  FValorIpi := Value;
-end;
-
-procedure TProduto.SetValorPisCofins(const Value: Double);
-begin
-  FValorPisCofins := Value;
-end;
-
-procedure TProduto.SetValorCusto(const Value: Currency);
-begin
-  FValorCusto := Value;
-end;
-
-procedure TProduto.SetValorVenda(const Value: Currency);
-begin
-  FValorVenda := Value;
-end;
-
-procedure TProduto.SetUnidadeMedida(const Value: String);
-begin
-  FUnidadeMedida := Value;
-end;
-
-procedure TProduto.SetAtivo(const Value: Boolean);
-begin
-  FAtivo := Value;
-end;
-
-function TProduto.GravarProduto: Boolean;
+function TProduto.GravarProduto(): Boolean;
 begin
   try
-    dmPrincipal.sqlGravarProduto.Params[0].Value := FCodEAN;
-    dmPrincipal.sqlGravarProduto.Params[1].Value := FDescricao;
-    dmPrincipal.sqlGravarProduto.Params[2].Value := FIdDepto;
-    dmPrincipal.sqlGravarProduto.Params[3].Value := FNcm;
-    dmPrincipal.sqlGravarProduto.Params[4].Value := FCFop;
-    dmPrincipal.sqlGravarProduto.Params[5].Value := FValorIcms;
-    dmPrincipal.sqlGravarProduto.Params[6].Value := FValorIpi;
-    dmPrincipal.sqlGravarProduto.Params[7].Value := FValorPisCofins;
-    dmPrincipal.sqlGravarProduto.Params[8].Value := FValorCusto;
-    dmPrincipal.sqlGravarProduto.Params[9].Value := FValorVenda;
-    dmPrincipal.sqlGravarProduto.Params[10].Value:= FUnidadeMedida;
+    dmPrincipal.sqlGravarProduto.Params[1].Value := FCodEAN;
+    dmPrincipal.sqlGravarProduto.Params[2].Value := FDescricao;
+    dmPrincipal.sqlGravarProduto.Params[3].Value := FIdDepto;
+    dmPrincipal.sqlGravarProduto.Params[4].Value := FNcm;
+    dmPrincipal.sqlGravarProduto.Params[5].Value := FCfopEntrada;
+    dmPrincipal.sqlGravarProduto.Params[6].Value := FCfopSaida;
+    dmPrincipal.sqlGravarProduto.Params[7].Value := FValorCusto;
+    dmPrincipal.sqlGravarProduto.Params[8].Value := FValorVenda;
+    dmPrincipal.sqlGravarProduto.Params[9].Value := FUnidadeMedida;
+    dmPrincipal.sqlGravarProduto.Params[10].Value := FQtdEstqAtual;
+    dmPrincipal.sqlGravarProduto.Params[11].Value := FObservacao;
+    dmPrincipal.sqlGravarProduto.Params[12].Value := FMargemLucro;
 
     dmPrincipal.sqlGravarProduto.ExecProc;
-    Result:= true;
-  except on E:Exception do
+    Result := true;
+  except
+    on E: Exception do
+      raise Exception.Create('Erro ao gravar produto: ' + E.Message);
+  end;
+end;
+
+function TProduto.ExcluirProduto(): Boolean;
+begin
+  try
+   dmPrincipal.sqlExcluirProduto.Params[1].Value := FCodEAN;
+   dmPrincipal.sqlExcluirProduto.ExecProc;
+   Result:= true;
+  except
+    on E: Exception do
     begin
-      ShowMessage('Ocorreu um erro ao gravar o produto: ' + E.Message);
+      raise Exception.Create('Erro ao excluir produto: ' + E.Message);
       Result:= false;
     end;
   end;
-
 end;
 
-function TProduto.ExcluirProduto: Boolean;
+function TProduto.BuscarProdutoPorEAN(CodEan: String): Boolean;
 begin
-  result:= false;
+  try
+      dmPrincipal.cdsCarregarProduto.Close;
+      dmPrincipal.cdsCarregarProduto.Params[1].Value:= CodEan;
+      dmPrincipal.cdsCarregarProduto.Open;
+
+      if dmPrincipal.cdsCarregarProduto.RecordCount = 0 then
+      begin
+        Result:= false;
+        exit;
+      end;
+
+      FIdProduto:= dmPrincipal.cdsCarregarProdutoID_PRODUTO.AsInteger;
+      FDescricao := dmPrincipal.cdsCarregarProdutoDS_PRODUTO.AsString;
+      FIdDepto := dmPrincipal.cdsCarregarProdutoID_DEPTO.AsInteger;
+      FQtdEstqAtual := dmPrincipal.cdsCarregarProdutoQTD_ESTQ_ATUAL.AsFloat;
+      FNcm := dmPrincipal.cdsCarregarProdutoDS_NCM.AsString;
+      FCfopEntrada := dmPrincipal.cdsCarregarProdutoCD_CFOP_ENTRADA.AsString;
+      FCfopSaida := dmPrincipal.cdsCarregarProdutoCD_CFOP_SAIDA.AsString;
+      FValorCusto := dmPrincipal.cdsCarregarProdutoVLR_CUSTO.AsCurrency;
+      FValorVenda := dmPrincipal.cdsCarregarProdutoVLR_VENDA.AsCurrency;
+      FMargemLucro := dmPrincipal.cdsCarregarProdutoMARGEM_LUCRO.AsFloat;
+      FUnidadeMedida := dmPrincipal.cdsCarregarProdutoDS_UNIDADE_MEDIDA.AsString;
+      FObservacao := dmPrincipal.cdsCarregarProdutoDS_OBSERVACAO.AsString;
+      FDataInclusao := dmPrincipal.cdsCarregarProdutoDT_INCLUSAO.AsDateTime;
+      Result := True;
+
+  except
+    on E: Exception do
+    begin
+      raise Exception.Create('Erro ao buscar produto: ' + E.Message);
+      result:= false
+    end;
+  end;
 end;
-
-function TProduto.BuscarProdutoPorEAN: Boolean;
-begin
-
-end;
-
 
 end.
-

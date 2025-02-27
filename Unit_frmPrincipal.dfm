@@ -2,7 +2,7 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Cadastro de Produtos'
-  ClientHeight = 640
+  ClientHeight = 593
   ClientWidth = 798
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
@@ -15,14 +15,14 @@ object frmPrincipal: TfrmPrincipal
   object pnlAcao: TPanel
     AlignWithMargins = True
     Left = 3
-    Top = 574
+    Top = 527
     Width = 792
     Height = 63
     Align = alBottom
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitTop = 570
+    ExplicitTop = 573
     ExplicitWidth = 788
     object ScrollBox2: TScrollBox
       Left = 1
@@ -33,8 +33,7 @@ object frmPrincipal: TfrmPrincipal
       Color = clHotLight
       ParentColor = False
       TabOrder = 0
-      ExplicitLeft = 565
-      ExplicitWidth = 226
+      ExplicitWidth = 786
       object btn_excluir: TBitBtn
         AlignWithMargins = True
         Left = 401
@@ -53,9 +52,7 @@ object frmPrincipal: TfrmPrincipal
         Images = ImageList1
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 402
-        ExplicitTop = 4
-        ExplicitHeight = 55
+        OnClick = btn_excluirClick
       end
       object btn_gravar: TBitBtn
         AlignWithMargins = True
@@ -75,7 +72,7 @@ object frmPrincipal: TfrmPrincipal
         Images = ImageList1
         ParentFont = False
         TabOrder = 1
-        ExplicitLeft = 165
+        OnClick = btn_gravarClick
       end
       object btn_novo: TBitBtn
         AlignWithMargins = True
@@ -96,7 +93,6 @@ object frmPrincipal: TfrmPrincipal
         ParentFont = False
         TabOrder = 2
         OnClick = btn_novoClick
-        ExplicitLeft = -15
       end
       object btn_procurar: TBitBtn
         AlignWithMargins = True
@@ -116,9 +112,6 @@ object frmPrincipal: TfrmPrincipal
         Images = ImageList1
         ParentFont = False
         TabOrder = 3
-        ExplicitLeft = 26
-        ExplicitTop = 4
-        ExplicitHeight = 55
       end
     end
   end
@@ -127,43 +120,43 @@ object frmPrincipal: TfrmPrincipal
     Left = 3
     Top = 63
     Width = 792
-    Height = 505
+    Height = 458
     Align = alClient
+    BorderStyle = bsSingle
     Color = clWhite
     ParentBackground = False
     TabOrder = 1
     ExplicitWidth = 788
-    ExplicitHeight = 501
+    ExplicitHeight = 504
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
-      Width = 790
-      Height = 503
+      Width = 786
+      Height = 452
       Align = alClient
+      BorderStyle = bsNone
       Color = clWhite
       ParentColor = False
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 60
-      ExplicitWidth = 798
-      ExplicitHeight = 511
+      ExplicitHeight = 499
       object GroupBox2: TGroupBox
         AlignWithMargins = True
         Left = 3
         Top = 259
-        Width = 780
+        Width = 763
         Height = 201
         Align = alTop
         Caption = 'Estoque e Pre'#231'o'
         TabOrder = 0
-        ExplicitLeft = 20
-        ExplicitTop = 272
-        ExplicitWidth = 760
+        ExplicitLeft = 22
+        ExplicitTop = 275
+        ExplicitWidth = 780
         object edtEstoqueAtual: TLabeledEdit
-          Left = 20
-          Top = 43
+          Left = 19
+          Top = 107
           Width = 140
           Height = 26
+          CharCase = ecUpperCase
           EditLabel.Width = 93
           EditLabel.Height = 17
           EditLabel.Caption = 'Estoque Atual:'
@@ -176,40 +169,19 @@ object frmPrincipal: TfrmPrincipal
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = 18
-          Font.Name = 'Arial'
+          Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
           TabOrder = 0
           Text = ''
-        end
-        object edtEstoqueInicial: TLabeledEdit
-          Left = 220
-          Top = 39
-          Width = 140
-          Height = 26
-          EditLabel.Width = 98
-          EditLabel.Height = 17
-          EditLabel.Caption = 'Estoque Inicial:'
-          EditLabel.Font.Charset = DEFAULT_CHARSET
-          EditLabel.Font.Color = clWindowText
-          EditLabel.Font.Height = 17
-          EditLabel.Font.Name = 'Arial'
-          EditLabel.Font.Style = []
-          EditLabel.ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = 18
-          Font.Name = 'Arial'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 1
-          Text = ''
+          OnChange = edtEstoqueAtualChange
         end
         object edtValorCusto: TLabeledEdit
-          Left = 20
-          Top = 99
+          Left = 19
+          Top = 51
           Width = 140
           Height = 26
+          CharCase = ecUpperCase
           EditLabel.Width = 99
           EditLabel.Height = 17
           EditLabel.Caption = 'Valor de Custo:'
@@ -222,20 +194,22 @@ object frmPrincipal: TfrmPrincipal
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = 18
-          Font.Name = 'Arial'
+          Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 1
           Text = ''
+          OnChange = edtValorCustoChange
         end
         object edtValorVenda: TLabeledEdit
-          Left = 20
-          Top = 164
+          Left = 179
+          Top = 108
           Width = 140
           Height = 26
-          EditLabel.Width = 100
+          CharCase = ecUpperCase
+          EditLabel.Width = 106
           EditLabel.Height = 17
-          EditLabel.Caption = 'Valor de Venda:'
+          EditLabel.Caption = 'Valor de Venda *'
           EditLabel.Font.Charset = DEFAULT_CHARSET
           EditLabel.Font.Color = clWindowText
           EditLabel.Font.Height = 17
@@ -245,17 +219,19 @@ object frmPrincipal: TfrmPrincipal
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = 18
-          Font.Name = 'Arial'
+          Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 2
           Text = ''
+          OnChange = edtValorVendaChange
         end
         object edtMargem: TLabeledEdit
-          Left = 220
-          Top = 99
+          Left = 179
+          Top = 51
           Width = 140
           Height = 26
+          CharCase = ecUpperCase
           EditLabel.Width = 70
           EditLabel.Height = 17
           EditLabel.Caption = 'Margem %'
@@ -268,30 +244,56 @@ object frmPrincipal: TfrmPrincipal
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = 18
-          Font.Name = 'Arial'
+          Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 4
+          TabOrder = 3
           Text = ''
+          OnChange = edtMargemChange
+          OnExit = edtMargemExit
         end
       end
       object GroupBox3: TGroupBox
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 780
+        Width = 763
         Height = 250
         Align = alTop
         Caption = 'Dados do Produto'
         TabOrder = 1
-        ExplicitLeft = 23
-        ExplicitTop = 16
-        ExplicitWidth = 760
+        ExplicitWidth = 776
+        object Label2: TLabel
+          Left = 248
+          Top = 128
+          Width = 93
+          Height = 17
+          Caption = 'Departamento'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 17
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+        end
+        object sbtn_buscar: TSpeedButton
+          Left = 231
+          Top = 32
+          Width = 42
+          Height = 40
+          ImageIndex = 2
+          Images = ImageList1
+          Flat = True
+          ParentShowHint = False
+          ShowHint = True
+          OnClick = sbtn_buscarClick
+        end
         object edtObservacao: TLabeledEdit
           Left = 19
           Top = 203
           Width = 422
           Height = 26
+          CharCase = ecUpperCase
           EditLabel.Width = 80
           EditLabel.Height = 17
           EditLabel.Caption = 'Observa'#231#227'o'
@@ -304,33 +306,10 @@ object frmPrincipal: TfrmPrincipal
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = 18
-          Font.Name = 'Arial'
+          Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
           TabOrder = 0
-          Text = ''
-        end
-        object edtDepartamento: TLabeledEdit
-          Left = 280
-          Top = 149
-          Width = 161
-          Height = 26
-          EditLabel.Width = 97
-          EditLabel.Height = 17
-          EditLabel.Caption = 'Departamento:'
-          EditLabel.Font.Charset = DEFAULT_CHARSET
-          EditLabel.Font.Color = clWindowText
-          EditLabel.Font.Height = 17
-          EditLabel.Font.Name = 'Arial'
-          EditLabel.Font.Style = []
-          EditLabel.ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = 18
-          Font.Name = 'Arial'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 1
           Text = ''
         end
         object edtUnidadeMedida: TLabeledEdit
@@ -338,6 +317,7 @@ object frmPrincipal: TfrmPrincipal
           Top = 149
           Width = 140
           Height = 26
+          CharCase = ecUpperCase
           EditLabel.Width = 127
           EditLabel.Height = 17
           EditLabel.Caption = 'Unidade de Medida:'
@@ -350,10 +330,10 @@ object frmPrincipal: TfrmPrincipal
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = 18
-          Font.Name = 'Arial'
+          Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 1
           Text = ''
         end
         object edtDescricao: TLabeledEdit
@@ -361,9 +341,10 @@ object frmPrincipal: TfrmPrincipal
           Top = 96
           Width = 421
           Height = 26
-          EditLabel.Width = 67
+          CharCase = ecUpperCase
+          EditLabel.Width = 77
           EditLabel.Height = 17
-          EditLabel.Caption = 'Descri'#231#227'o'
+          EditLabel.Caption = 'Descri'#231#227'o *'
           EditLabel.Font.Charset = DEFAULT_CHARSET
           EditLabel.Font.Color = clWindowText
           EditLabel.Font.Height = 17
@@ -373,10 +354,10 @@ object frmPrincipal: TfrmPrincipal
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = 18
-          Font.Name = 'Arial'
+          Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 2
           Text = ''
         end
         object edtCodEan: TLabeledEdit
@@ -384,9 +365,10 @@ object frmPrincipal: TfrmPrincipal
           Top = 43
           Width = 205
           Height = 26
-          EditLabel.Width = 76
+          CharCase = ecUpperCase
+          EditLabel.Width = 86
           EditLabel.Height = 17
-          EditLabel.Caption = 'C'#243'digo Ean'
+          EditLabel.Caption = 'C'#243'digo Ean *'
           EditLabel.Font.Charset = DEFAULT_CHARSET
           EditLabel.Font.Color = clWindowText
           EditLabel.Font.Height = 17
@@ -396,24 +378,28 @@ object frmPrincipal: TfrmPrincipal
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = 18
-          Font.Name = 'Arial'
+          Font.Name = 'Calibri'
           Font.Style = []
+          MaxLength = 13
           ParentFont = False
-          TabOrder = 4
+          TabOrder = 3
           Text = ''
+          OnChange = edtCodEanChange
+          OnKeyPress = edtCodEanKeyPress
         end
         object GroupBox1: TGroupBox
-          Left = 481
+          Left = 497
           Top = 80
           Width = 265
           Height = 151
           Caption = 'Tributa'#231#227'o'
-          TabOrder = 5
+          TabOrder = 4
           object edtCfopEntrada: TLabeledEdit
-            Left = 147
+            Left = 11
             Top = 99
             Width = 102
             Height = 26
+            CharCase = ecUpperCase
             EditLabel.Width = 101
             EditLabel.Height = 17
             EditLabel.Caption = 'CFOP Entrada:'
@@ -426,17 +412,20 @@ object frmPrincipal: TfrmPrincipal
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = 18
-            Font.Name = 'Arial'
+            Font.Name = 'Calibri'
             Font.Style = []
+            MaxLength = 4
             ParentFont = False
             TabOrder = 0
             Text = ''
+            OnChange = edtCfopEntradaChange
           end
           object edtCfopSaida: TLabeledEdit
-            Left = 11
+            Left = 144
             Top = 99
             Width = 102
             Height = 26
+            CharCase = ecUpperCase
             EditLabel.Width = 83
             EditLabel.Height = 17
             EditLabel.Caption = 'CFOP Sa'#237'da'
@@ -449,17 +438,20 @@ object frmPrincipal: TfrmPrincipal
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = 18
-            Font.Name = 'Arial'
+            Font.Name = 'Calibri'
             Font.Style = []
+            MaxLength = 4
             ParentFont = False
             TabOrder = 1
             Text = ''
+            OnChange = edtCfopSaidaChange
           end
           object edtNcm: TLabeledEdit
             Left = 11
             Top = 43
             Width = 150
             Height = 26
+            CharCase = ecUpperCase
             EditLabel.Width = 36
             EditLabel.Height = 17
             EditLabel.Caption = 'NCM:'
@@ -472,12 +464,31 @@ object frmPrincipal: TfrmPrincipal
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = 18
-            Font.Name = 'Arial'
+            Font.Name = 'Calibri'
             Font.Style = []
+            MaxLength = 8
             ParentFont = False
             TabOrder = 2
             Text = ''
+            OnChange = edtNcmChange
           end
+        end
+        object cbx_depto: TComboBox
+          Left = 248
+          Top = 149
+          Width = 193
+          Height = 23
+          Style = csDropDownList
+          CharCase = ecUpperCase
+          ItemIndex = 0
+          CanUndoSelText = True
+          TabOrder = 5
+          Text = 'GERAL'
+          Items.Strings = (
+            'GERAL'
+            'HORTIFRUTI '
+            'A'#199'OUGUE '
+            'PRODUTOS DE LIMPEZA')
         end
       end
     end

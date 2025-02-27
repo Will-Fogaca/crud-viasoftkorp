@@ -26,9 +26,9 @@ type
     cdsCarregarProdutoCD_CFOP_SAIDA: TStringField;
     cdsCarregarProdutoVLR_CUSTO: TFMTBCDField;
     cdsCarregarProdutoVLR_VENDA: TFMTBCDField;
-    cdsCarregarProdutoQTD_ESTQ_ATUAL: TIntegerField;
-    cdsCarregarProdutoQTD_ESTQ_INICIAL: TIntegerField;
+    cdsCarregarProdutoQTD_ESTQ_ATUAL: TFloatField;
     cdsCarregarProdutoDS_UNIDADE_MEDIDA: TStringField;
+    cdsCarregarProdutoMARGEM_LUCRO: TFloatField;
     cdsCarregarProdutoDS_OBSERVACAO: TStringField;
     cdsCarregarProdutoDT_INCLUSAO: TSQLTimeStampField;
   private

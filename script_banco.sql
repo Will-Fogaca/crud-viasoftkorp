@@ -7,8 +7,7 @@ CREATE TABLE tb_produto (
     cod_ean VARCHAR(13),
     ds_produto VARCHAR(200),                     
     id_depto INT,  
-    qtd_estq_inicial INT, 
-    qtd_estq_atual INT,
+    qtd_estq_atual FLOAT,
     ds_ncm VARCHAR(8),                  
     cd_cfop_entrada VARCHAR(4), 
     cd_cfop_saida VARCHAR(4),                      
@@ -35,7 +34,7 @@ CREATE PROCEDURE [dbo].[SP_GRAVAR_PRODUTO]
 	@VLR_CUSTO MONEY,
 	@VLR_VENDA MONEY, 
 	@DS_UNIDADE_MEDIDA VARCHAR(20),
-	@QTD_ESTQ_INICIAL INT,
+	@QTD_ESTQ_ATUAL FLOAT,
 	@DS_OBSERVACAO VARCHAR(100),
 	@MARGEM_LUCRO FLOAT
 AS 
@@ -54,7 +53,8 @@ BEGIN
 			VLR_VENDA = @VLR_VENDA, 
 			DS_UNIDADE_MEDIDA = @DS_UNIDADE_MEDIDA,
 			DS_OBSERVACAO = @DS_OBSERVACAO,
-			MARGEM_LUCRO = @MARGEM_LUCRO
+			MARGEM_LUCRO = @MARGEM_LUCRO,
+			qtd_estq_atual = @QTD_ESTQ_ATUAL
 		WHERE
 			COD_EAN = @COD_EAN
 			AND fl_ativo = 1
@@ -87,7 +87,7 @@ BEGIN
 				@VLR_CUSTO,
 				@VLR_VENDA, 
 				@DS_UNIDADE_MEDIDA,
-				@QTD_ESTQ_INICIAL,
+				@QTD_ESTQ_ATUAL,
 				@DS_OBSERVACAO,
 				@MARGEM_LUCRO	
 			)
@@ -126,8 +126,7 @@ AS
 		CD_CFOP_SAIDA,
 		VLR_CUSTO,                   
 		VLR_VENDA,           
-		QTD_ESTQ_ATUAL,
-		QTD_ESTQ_INICIAL,       
+		QTD_ESTQ_ATUAL,       
 		DS_UNIDADE_MEDIDA,
 		MARGEM_LUCRO,
 		DS_OBSERVACAO,                  
@@ -155,8 +154,7 @@ AS
 		CD_CFOP_SAIDA,                 
 		VLR_CUSTO,                   
 		VLR_VENDA, 
-		QTD_ESTQ_ATUAL,
-		QTD_ESTQ_INICIAL,                  
+		QTD_ESTQ_ATUAL,                
 		DS_UNIDADE_MEDIDA, 
 		MARGEM_LUCRO,
 		DS_OBSERVACAO,                 
