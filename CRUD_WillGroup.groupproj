@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{081CED21-DFA6-4F65-B92C-1DE0C4EA835A}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CRUD_Will.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\CRUD_WillTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CRUD_Will">
+        <MSBuild Projects="CRUD_Will.dproj"/>
+    </Target>
+    <Target Name="CRUD_Will:Clean">
+        <MSBuild Projects="CRUD_Will.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CRUD_Will:Make">
+        <MSBuild Projects="CRUD_Will.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CRUD_WillTests">
+        <MSBuild Projects="Test\CRUD_WillTests.dproj"/>
+    </Target>
+    <Target Name="CRUD_WillTests:Clean">
+        <MSBuild Projects="Test\CRUD_WillTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CRUD_WillTests:Make">
+        <MSBuild Projects="Test\CRUD_WillTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CRUD_Will;CRUD_WillTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CRUD_Will:Clean;CRUD_WillTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CRUD_Will:Make;CRUD_WillTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

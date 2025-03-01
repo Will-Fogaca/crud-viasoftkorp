@@ -1,7 +1,11 @@
 /*
 	SCRIPT CRUD VIASOFT KORP
+
+	CREATE DATABASE db_crud_will
 		
 */
+
+
 
 --CRIAR A TABELA DE PRODUTO
 
