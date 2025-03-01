@@ -1,47 +1,6 @@
 object dmPrincipal: TdmPrincipal
   Height = 480
   Width = 640
-  object sqlConexao: TSQLConnection
-    DriverName = 'MSSQL'
-    LoginPrompt = False
-    Params.Strings = (
-      'SchemaOverride=%.dbo'
-      'DriverUnit=Data.DBXMSSQL'
-      
-        'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver280.' +
-        'bpl'
-      
-        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
-        'nd.Data.DbxCommonDriver,Version=24.0.0.0,Culture=neutral,PublicK' +
-        'eyToken=91d62ebb5b0d1b1b'
-      
-        'MetaDataPackageLoader=TDBXMsSqlMetaDataCommandFactory,DbxMSSQLDr' +
-        'iver280.bpl'
-      
-        'MetaDataAssemblyLoader=Borland.Data.TDBXMsSqlMetaDataCommandFact' +
-        'ory,Borland.Data.DbxMSSQLDriver,Version=24.0.0.0,Culture=neutral' +
-        ',PublicKeyToken=91d62ebb5b0d1b1b'
-      'GetDriverFunc=getSQLDriverMSSQL'
-      'LibraryName=dbxmss.dll'
-      'VendorLib=sqlncli10.dll'
-      'VendorLibWin64=sqlncli10.dll'
-      'HostName=127.0.0.1'
-      'DataBase=db_crud_will'
-      'MaxBlobSize=-1'
-      'LocaleCode=0000'
-      'IsolationLevel=ReadCommitted'
-      'OSAuthentication=False'
-      'PrepareSQL=True'
-      'User_Name=sistema'
-      'Password=d22m04'
-      'BlobSize=-1'
-      'ErrorResourceFile='
-      'OS Authentication=False'
-      'Prepare SQL=False')
-    Connected = True
-    Left = 48
-    Top = 32
-  end
   object cdsListarProdutos: TClientDataSet
     Aggregates = <>
     Params = <>
@@ -50,7 +9,7 @@ object dmPrincipal: TdmPrincipal
     Top = 112
     object cdsListarProdutosID_PRODUTO: TIntegerField
       FieldName = 'ID_PRODUTO'
-      Required = True
+      ReadOnly = True
     end
     object cdsListarProdutosCOD_EAN: TStringField
       FieldName = 'COD_EAN'
@@ -75,15 +34,11 @@ object dmPrincipal: TdmPrincipal
       FieldName = 'CD_CFOP_SAIDA'
       Size = 4
     end
-    object cdsListarProdutosVLR_CUSTO: TFMTBCDField
+    object cdsListarProdutosVLR_CUSTO: TCurrencyField
       FieldName = 'VLR_CUSTO'
-      Precision = 19
-      Size = 4
     end
-    object cdsListarProdutosVLR_VENDA: TFMTBCDField
+    object cdsListarProdutosVLR_VENDA: TCurrencyField
       FieldName = 'VLR_VENDA'
-      Precision = 19
-      Size = 4
     end
     object cdsListarProdutosQTD_ESTQ_ATUAL: TFloatField
       FieldName = 'QTD_ESTQ_ATUAL'
@@ -98,135 +53,14 @@ object dmPrincipal: TdmPrincipal
       FieldName = 'DS_OBSERVACAO'
       Size = 100
     end
-    object cdsListarProdutosDT_INCLUSAO: TSQLTimeStampField
+    object cdsListarProdutosDT_INCLUSAO: TDateTimeField
       FieldName = 'DT_INCLUSAO'
     end
   end
   object dspListarProdutos: TDataSetProvider
     DataSet = sqlListarProdutos
-    Left = 200
+    Left = 208
     Top = 112
-  end
-  object sqlListarProdutos: TSQLQuery
-    SchemaName = 'dbo'
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'SP_LISTAR_PRODUTOS')
-    SQLConnection = sqlConexao
-    Left = 48
-    Top = 112
-  end
-  object sqlExcluirProduto: TSQLStoredProc
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Precision = 10
-        Name = '@RETURN_VALUE'
-        ParamType = ptResult
-        Size = 10
-      end
-      item
-        DataType = ftString
-        Precision = 13
-        Name = '@COD_EAN'
-        ParamType = ptInput
-      end>
-    SQLConnection = sqlConexao
-    StoredProcName = 'SP_EXCLUIR_PRODUTO'
-    Left = 168
-    Top = 280
-  end
-  object sqlGravarProduto: TSQLStoredProc
-    SchemaName = 'dbo'
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Precision = 10
-        Name = '@RETURN_VALUE'
-        ParamType = ptResult
-        Size = 10
-      end
-      item
-        DataType = ftString
-        Precision = 13
-        Name = '@COD_EAN'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Precision = 200
-        Name = '@DS_PRODUTO'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Precision = 10
-        Name = '@ID_DEPTO'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Precision = 8
-        Name = '@DS_NCM'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Precision = 4
-        Name = '@CD_CFOP_ENTRADA'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Precision = 4
-        Name = '@CD_CFOP_SAIDA'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftFMTBcd
-        Precision = 19
-        NumericScale = 4
-        Name = '@VLR_CUSTO'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftFMTBcd
-        Precision = 19
-        NumericScale = 4
-        Name = '@VLR_VENDA'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Precision = 20
-        Name = '@DS_UNIDADE_MEDIDA'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftFloat
-        Precision = 53
-        Name = '@QTD_ESTQ_INICIAL'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Precision = 100
-        Name = '@DS_OBSERVACAO'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftFloat
-        Precision = 53
-        Name = '@MARGEM_LUCRO'
-        ParamType = ptInput
-      end>
-    SQLConnection = sqlConexao
-    StoredProcName = 'SP_GRAVAR_PRODUTO'
-    Left = 48
-    Top = 280
   end
   object cdsCarregarProduto: TClientDataSet
     Aggregates = <>
@@ -245,11 +79,11 @@ object dmPrincipal: TdmPrincipal
         ParamType = ptInput
       end>
     ProviderName = 'dspCarregarProduto'
-    Left = 336
-    Top = 176
+    Left = 352
+    Top = 192
     object cdsCarregarProdutoID_PRODUTO: TIntegerField
       FieldName = 'ID_PRODUTO'
-      Required = True
+      ReadOnly = True
     end
     object cdsCarregarProdutoCOD_EAN: TStringField
       FieldName = 'COD_EAN'
@@ -274,15 +108,11 @@ object dmPrincipal: TdmPrincipal
       FieldName = 'CD_CFOP_SAIDA'
       Size = 4
     end
-    object cdsCarregarProdutoVLR_CUSTO: TFMTBCDField
+    object cdsCarregarProdutoVLR_CUSTO: TCurrencyField
       FieldName = 'VLR_CUSTO'
-      Precision = 19
-      Size = 4
     end
-    object cdsCarregarProdutoVLR_VENDA: TFMTBCDField
+    object cdsCarregarProdutoVLR_VENDA: TCurrencyField
       FieldName = 'VLR_VENDA'
-      Precision = 19
-      Size = 4
     end
     object cdsCarregarProdutoQTD_ESTQ_ATUAL: TFloatField
       FieldName = 'QTD_ESTQ_ATUAL'
@@ -297,41 +127,187 @@ object dmPrincipal: TdmPrincipal
       FieldName = 'DS_OBSERVACAO'
       Size = 100
     end
-    object cdsCarregarProdutoDT_INCLUSAO: TSQLTimeStampField
+    object cdsCarregarProdutoDT_INCLUSAO: TDateTimeField
       FieldName = 'DT_INCLUSAO'
     end
   end
   object dspCarregarProduto: TDataSetProvider
     DataSet = sqlCarregarProduto
-    Left = 200
-    Top = 176
-  end
-  object sqlCarregarProduto: TSQLStoredProc
-    SchemaName = 'dbo'
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Precision = 10
-        Name = '@RETURN_VALUE'
-        ParamType = ptResult
-        Size = 10
-        Value = 0
-      end
-      item
-        DataType = ftString
-        Precision = 13
-        Name = '@COD_EAN'
-        ParamType = ptInput
-      end>
-    SQLConnection = sqlConexao
-    StoredProcName = 'SP_CARREGAR_PRODUTO'
-    Left = 48
-    Top = 176
+    Left = 208
+    Top = 192
   end
   object dsListarProdutos: TDataSource
     DataSet = cdsListarProdutos
     Left = 464
     Top = 112
+  end
+  object sqlConexao: TMSConnection
+    Database = 'db_crud'
+    Options.Provider = prSQL
+    Username = 'sistema'
+    Server = 'PC-WILL\MSSQLSERVERDEV'
+    Connected = True
+    LoginPrompt = False
+    Left = 56
+    Top = 40
+    EncryptedPassword = '8CFF96FF8CFF8BFF9AFF92FF9EFF'
+  end
+  object sqlListarProdutos: TMSQuery
+    Connection = sqlConexao
+    SQL.Strings = (
+      '{:RETURN_VALUE = CALL [SP_LISTAR_PRODUTOS]}')
+    Left = 56
+    Top = 120
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'RETURN_VALUE'
+        ParamType = ptResult
+        Value = 0
+      end>
+    CommandStoredProcName = '[SP_LISTAR_PRODUTOS]'
+  end
+  object sqlCarregarProduto: TMSQuery
+    Connection = sqlConexao
+    SQL.Strings = (
+      '{:RETURN_VALUE = CALL SP_CARREGAR_PRODUTO (:COD_EAN)}')
+    Left = 56
+    Top = 200
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = '@RETURN_VALUE'
+        ParamType = ptResult
+        Value = 0
+      end
+      item
+        DataType = ftString
+        Name = '@COD_EAN'
+        ParamType = ptInput
+        Value = nil
+      end>
+    CommandStoredProcName = 'SP_CARREGAR_PRODUTO'
+  end
+  object sqlGravarProduto: TMSStoredProc
+    StoredProcName = 'SP_GRAVAR_PRODUTO'
+    Connection = sqlConexao
+    SQL.Strings = (
+      
+        '{:RETURN_VALUE = CALL SP_GRAVAR_PRODUTO (:COD_EAN, :DS_PRODUTO, ' +
+        ':ID_DEPTO, :DS_NCM, :CD_CFOP_ENTRADA, :CD_CFOP_SAIDA, :VLR_CUSTO' +
+        ', :VLR_VENDA, :DS_UNIDADE_MEDIDA, :QTD_ESTQ_ATUAL, :DS_OBSERVACA' +
+        'O, :MARGEM_LUCRO)}')
+    Left = 56
+    Top = 264
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'RETURN_VALUE'
+        ParamType = ptResult
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'COD_EAN'
+        ParamType = ptInput
+        Size = 13
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'DS_PRODUTO'
+        ParamType = ptInput
+        Size = 200
+        Value = nil
+      end
+      item
+        DataType = ftInteger
+        Name = 'ID_DEPTO'
+        ParamType = ptInput
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'DS_NCM'
+        ParamType = ptInput
+        Size = 8
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'CD_CFOP_ENTRADA'
+        ParamType = ptInput
+        Size = 4
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'CD_CFOP_SAIDA'
+        ParamType = ptInput
+        Size = 4
+        Value = nil
+      end
+      item
+        DataType = ftCurrency
+        Name = 'VLR_CUSTO'
+        ParamType = ptInput
+        Value = nil
+      end
+      item
+        DataType = ftCurrency
+        Name = 'VLR_VENDA'
+        ParamType = ptInput
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'DS_UNIDADE_MEDIDA'
+        ParamType = ptInput
+        Size = 20
+        Value = nil
+      end
+      item
+        DataType = ftFloat
+        Name = 'QTD_ESTQ_ATUAL'
+        ParamType = ptInput
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'DS_OBSERVACAO'
+        ParamType = ptInput
+        Size = 100
+        Value = nil
+      end
+      item
+        DataType = ftFloat
+        Name = 'MARGEM_LUCRO'
+        ParamType = ptInput
+        Value = nil
+      end>
+    CommandStoredProcName = 'SP_GRAVAR_PRODUTO'
+  end
+  object sqlExcluirProduto: TMSStoredProc
+    StoredProcName = 'SP_EXCLUIR_PRODUTO'
+    Connection = sqlConexao
+    SQL.Strings = (
+      '{:RETURN_VALUE = CALL SP_EXCLUIR_PRODUTO (:COD_EAN)}')
+    Left = 216
+    Top = 272
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'RETURN_VALUE'
+        ParamType = ptResult
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'COD_EAN'
+        ParamType = ptInput
+        Size = 13
+        Value = nil
+      end>
+    CommandStoredProcName = 'SP_EXCLUIR_PRODUTO'
   end
 end

@@ -1,13 +1,11 @@
 /*
 	SCRIPT CRUD VIASOFT KORP
-
-	CREATE DATABASE db_crud_will
-		
+	CREATE DATABASE db_crud	
 */
-
-
-
 --CRIAR A TABELA DE PRODUTO
+--SELECT * FROM TB_PRODUTO
+
+
 
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_produto]') AND type in (N'U'))
 CREATE TABLE tb_produto (

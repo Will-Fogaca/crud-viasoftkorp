@@ -74,49 +74,42 @@ object frmBuscaProduto: TfrmBuscaProduto
         Expanded = False
         FieldName = 'VLR_CUSTO'
         Title.Caption = 'VLR. CUSTO'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'VLR_VENDA'
         Title.Caption = 'VLR. VENDA'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'QTD_ESTQ_ATUAL'
         Title.Caption = 'ESTQ. ATUAL'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'DS_UNIDADE_MEDIDA'
         Title.Caption = 'UNIDADE'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'MARGEM_LUCRO'
         Title.Caption = 'MARGEM LUCRO'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'DT_INCLUSAO'
         Title.Caption = 'DATA DE CADASTRO'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'DS_OBSERVACAO'
         Title.Caption = 'OBS.'
-        Width = 64
         Visible = True
       end>
   end

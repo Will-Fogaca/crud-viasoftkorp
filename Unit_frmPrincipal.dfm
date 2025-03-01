@@ -73,6 +73,7 @@ object frmPrincipal: TfrmPrincipal
         ParentFont = False
         TabOrder = 1
         OnClick = btn_gravarClick
+        ExplicitTop = 2
       end
       object btn_novo: TBitBtn
         AlignWithMargins = True
@@ -365,7 +366,7 @@ object frmPrincipal: TfrmPrincipal
         end
         object edtCodEan: TLabeledEdit
           Left = 20
-          Top = 43
+          Top = 46
           Width = 205
           Height = 26
           CharCase = ecUpperCase
@@ -514,14 +515,14 @@ object frmPrincipal: TfrmPrincipal
       Height = 52
       Align = alClient
       Alignment = taCenter
-      Caption = 'Estudos'
+      Caption = 'CRUD - Will'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = 40
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      ExplicitWidth = 125
+      ExplicitWidth = 189
       ExplicitHeight = 40
     end
   end

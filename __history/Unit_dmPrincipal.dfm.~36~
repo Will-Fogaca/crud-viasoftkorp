@@ -1,0 +1,195 @@
+object dmPrincipal: TdmPrincipal
+  Height = 480
+  Width = 640
+  object cdsListarProdutos: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspListarProdutos'
+    Left = 336
+    Top = 112
+    object cdsListarProdutosID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Required = True
+    end
+    object cdsListarProdutosCOD_EAN: TStringField
+      FieldName = 'COD_EAN'
+      Size = 13
+    end
+    object cdsListarProdutosDS_PRODUTO: TStringField
+      FieldName = 'DS_PRODUTO'
+      Size = 200
+    end
+    object cdsListarProdutosID_DEPTO: TIntegerField
+      FieldName = 'ID_DEPTO'
+    end
+    object cdsListarProdutosDS_NCM: TStringField
+      FieldName = 'DS_NCM'
+      Size = 8
+    end
+    object cdsListarProdutosCD_CFOP_ENTRADA: TStringField
+      FieldName = 'CD_CFOP_ENTRADA'
+      Size = 4
+    end
+    object cdsListarProdutosCD_CFOP_SAIDA: TStringField
+      FieldName = 'CD_CFOP_SAIDA'
+      Size = 4
+    end
+    object cdsListarProdutosVLR_CUSTO: TFMTBCDField
+      FieldName = 'VLR_CUSTO'
+      Precision = 19
+      Size = 4
+    end
+    object cdsListarProdutosVLR_VENDA: TFMTBCDField
+      FieldName = 'VLR_VENDA'
+      Precision = 19
+      Size = 4
+    end
+    object cdsListarProdutosQTD_ESTQ_ATUAL: TFloatField
+      FieldName = 'QTD_ESTQ_ATUAL'
+    end
+    object cdsListarProdutosDS_UNIDADE_MEDIDA: TStringField
+      FieldName = 'DS_UNIDADE_MEDIDA'
+    end
+    object cdsListarProdutosMARGEM_LUCRO: TFloatField
+      FieldName = 'MARGEM_LUCRO'
+    end
+    object cdsListarProdutosDS_OBSERVACAO: TStringField
+      FieldName = 'DS_OBSERVACAO'
+      Size = 100
+    end
+    object cdsListarProdutosDT_INCLUSAO: TSQLTimeStampField
+      FieldName = 'DT_INCLUSAO'
+    end
+  end
+  object dspListarProdutos: TDataSetProvider
+    Left = 208
+    Top = 112
+  end
+  object cdsCarregarProduto: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Precision = 10
+        Name = '@RETURN_VALUE'
+        ParamType = ptResult
+        Size = 10
+      end
+      item
+        DataType = ftString
+        Precision = 13
+        Name = '@COD_EAN'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspCarregarProduto'
+    Left = 336
+    Top = 176
+    object cdsCarregarProdutoID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Required = True
+    end
+    object cdsCarregarProdutoCOD_EAN: TStringField
+      FieldName = 'COD_EAN'
+      Size = 13
+    end
+    object cdsCarregarProdutoDS_PRODUTO: TStringField
+      FieldName = 'DS_PRODUTO'
+      Size = 200
+    end
+    object cdsCarregarProdutoID_DEPTO: TIntegerField
+      FieldName = 'ID_DEPTO'
+    end
+    object cdsCarregarProdutoDS_NCM: TStringField
+      FieldName = 'DS_NCM'
+      Size = 8
+    end
+    object cdsCarregarProdutoCD_CFOP_ENTRADA: TStringField
+      FieldName = 'CD_CFOP_ENTRADA'
+      Size = 4
+    end
+    object cdsCarregarProdutoCD_CFOP_SAIDA: TStringField
+      FieldName = 'CD_CFOP_SAIDA'
+      Size = 4
+    end
+    object cdsCarregarProdutoVLR_CUSTO: TFMTBCDField
+      FieldName = 'VLR_CUSTO'
+      Precision = 19
+      Size = 4
+    end
+    object cdsCarregarProdutoVLR_VENDA: TFMTBCDField
+      FieldName = 'VLR_VENDA'
+      Precision = 19
+      Size = 4
+    end
+    object cdsCarregarProdutoQTD_ESTQ_ATUAL: TFloatField
+      FieldName = 'QTD_ESTQ_ATUAL'
+    end
+    object cdsCarregarProdutoDS_UNIDADE_MEDIDA: TStringField
+      FieldName = 'DS_UNIDADE_MEDIDA'
+    end
+    object cdsCarregarProdutoMARGEM_LUCRO: TFloatField
+      FieldName = 'MARGEM_LUCRO'
+    end
+    object cdsCarregarProdutoDS_OBSERVACAO: TStringField
+      FieldName = 'DS_OBSERVACAO'
+      Size = 100
+    end
+    object cdsCarregarProdutoDT_INCLUSAO: TSQLTimeStampField
+      FieldName = 'DT_INCLUSAO'
+    end
+  end
+  object dspCarregarProduto: TDataSetProvider
+    Left = 200
+    Top = 176
+  end
+  object dsListarProdutos: TDataSource
+    DataSet = cdsListarProdutos
+    Left = 464
+    Top = 112
+  end
+  object sqlConexao: TMSConnection
+    Database = 'db_crud'
+    Options.Provider = prSQL
+    Username = 'sistema'
+    Server = 'PC-WILL\MSSQLSERVERDEV'
+    Connected = True
+    LoginPrompt = False
+    Left = 40
+    Top = 40
+    EncryptedPassword = '8CFF96FF8CFF8BFF9AFF92FF9EFF'
+  end
+  object sqlListarProdutos: TMSQuery
+    Connection = sqlConexao
+    SQL.Strings = (
+      '{:RETURN_VALUE = CALL [SP_LISTAR_PRODUTOS]}')
+    Left = 56
+    Top = 120
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'RETURN_VALUE'
+        ParamType = ptResult
+        Value = nil
+      end>
+    CommandStoredProcName = '[SP_LISTAR_PRODUTOS]'
+  end
+  object sqlCarregarProduto: TMSQuery
+    Connection = sqlConexao
+    Left = 56
+    Top = 200
+  end
+  object DataSource1: TDataSource
+    Left = 552
+    Top = 216
+  end
+  object sqlGravarProduto: TMSStoredProc
+    Connection = sqlConexao
+    Left = 56
+    Top = 264
+  end
+  object sqlExcluirProduto: TMSStoredProc
+    Connection = sqlConexao
+    Left = 176
+    Top = 262
+  end
+end

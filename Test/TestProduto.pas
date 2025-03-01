@@ -101,16 +101,29 @@ var
   CodEan: string;
 begin
   CodEan := '1234567890123';
+  ReturnValue := False;
 
   try
+
+    if not FDmPrincipal.sqlConexao.Connected then
+    begin
+       ReturnValue:=false;
+       Exit;
+    end;
+
     FDmPrincipal.cdsCarregarProduto.Close;
     FDmPrincipal.cdsCarregarProduto.Params[1].Value := CodEan;
     FDmPrincipal.cdsCarregarProduto.Open;
 
+    if not FDmPrincipal.cdsCarregarProduto.Active then
+    begin
+      ReturnValue:=false;
+      Exit;
+    end;
+
     if FDmPrincipal.cdsCarregarProduto.RecordCount = 0 then
     begin
-      ReturnValue := False;
-      Writeln('Produto não encontrado no banco de dados.');
+      Write('Produto não encontrado no banco de dados.');
     end
     else
     begin
@@ -127,16 +140,14 @@ begin
       FProduto.MargemLucro := FDmPrincipal.cdsCarregarProdutoMARGEM_LUCRO.AsFloat;
       FProduto.UnidadeMedida := FDmPrincipal.cdsCarregarProdutoDS_UNIDADE_MEDIDA.AsString;
       FProduto.Observacao := FDmPrincipal.cdsCarregarProdutoDS_OBSERVACAO.AsString;
-      
+
       ReturnValue := True;
-      Writeln('Produto encontrado com sucesso.');
     end;
   except
     on E: Exception do
     begin
-      raise Exception.Create('Erro ao buscar produto: ' + E.Message);
-      ReturnValue := False;
       Writeln('Erro ao buscar produto: ' + E.Message);
+      ReturnValue := False;
     end;
   end;
 
