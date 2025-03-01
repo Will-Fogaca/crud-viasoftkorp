@@ -21,8 +21,8 @@ object frmPrincipal: TfrmPrincipal
     Align = alBottom
     Color = clWhite
     ParentBackground = False
-    TabOrder = 0
-    ExplicitTop = 573
+    TabOrder = 2
+    ExplicitTop = 526
     ExplicitWidth = 788
     object ScrollBox2: TScrollBox
       Left = 1
@@ -51,7 +51,7 @@ object frmPrincipal: TfrmPrincipal
         ImageIndex = 1
         Images = ImageList1
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 2
         OnClick = btn_excluirClick
       end
       object btn_gravar: TBitBtn
@@ -91,7 +91,8 @@ object frmPrincipal: TfrmPrincipal
         ImageIndex = 0
         Images = ImageList1
         ParentFont = False
-        TabOrder = 2
+        Style = bsNew
+        TabOrder = 0
         OnClick = btn_novoClick
       end
       object btn_procurar: TBitBtn
@@ -111,7 +112,10 @@ object frmPrincipal: TfrmPrincipal
         ImageIndex = 2
         Images = ImageList1
         ParentFont = False
+        ParentShowHint = False
+        ShowHint = False
         TabOrder = 3
+        OnClick = btn_procurarClick
       end
     end
   end
@@ -125,9 +129,9 @@ object frmPrincipal: TfrmPrincipal
     BorderStyle = bsSingle
     Color = clWhite
     ParentBackground = False
-    TabOrder = 1
+    TabOrder = 0
     ExplicitWidth = 788
-    ExplicitHeight = 504
+    ExplicitHeight = 457
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
@@ -138,7 +142,8 @@ object frmPrincipal: TfrmPrincipal
       Color = clWhite
       ParentColor = False
       TabOrder = 0
-      ExplicitHeight = 499
+      ExplicitWidth = 782
+      ExplicitHeight = 451
       object GroupBox2: TGroupBox
         AlignWithMargins = True
         Left = 3
@@ -147,10 +152,8 @@ object frmPrincipal: TfrmPrincipal
         Height = 201
         Align = alTop
         Caption = 'Estoque e Pre'#231'o'
-        TabOrder = 0
-        ExplicitLeft = 22
-        ExplicitTop = 275
-        ExplicitWidth = 780
+        TabOrder = 1
+        ExplicitWidth = 759
         object edtEstoqueAtual: TLabeledEdit
           Left = 19
           Top = 107
@@ -222,7 +225,7 @@ object frmPrincipal: TfrmPrincipal
           Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 3
           Text = ''
           OnChange = edtValorVendaChange
         end
@@ -247,7 +250,7 @@ object frmPrincipal: TfrmPrincipal
           Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 2
           Text = ''
           OnChange = edtMargemChange
           OnExit = edtMargemExit
@@ -261,8 +264,8 @@ object frmPrincipal: TfrmPrincipal
         Height = 250
         Align = alTop
         Caption = 'Dados do Produto'
-        TabOrder = 1
-        ExplicitWidth = 776
+        TabOrder = 0
+        ExplicitWidth = 759
         object Label2: TLabel
           Left = 248
           Top = 128
@@ -309,7 +312,7 @@ object frmPrincipal: TfrmPrincipal
           Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 0
+          TabOrder = 5
           Text = ''
         end
         object edtUnidadeMedida: TLabeledEdit
@@ -333,7 +336,7 @@ object frmPrincipal: TfrmPrincipal
           Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
-          TabOrder = 1
+          TabOrder = 3
           Text = ''
         end
         object edtDescricao: TLabeledEdit
@@ -382,18 +385,18 @@ object frmPrincipal: TfrmPrincipal
           Font.Style = []
           MaxLength = 13
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 0
           Text = ''
           OnChange = edtCodEanChange
           OnKeyPress = edtCodEanKeyPress
         end
         object GroupBox1: TGroupBox
-          Left = 497
+          Left = 494
           Top = 80
           Width = 265
           Height = 151
           Caption = 'Tributa'#231#227'o'
-          TabOrder = 4
+          TabOrder = 1
           object edtCfopEntrada: TLabeledEdit
             Left = 11
             Top = 99
@@ -482,7 +485,7 @@ object frmPrincipal: TfrmPrincipal
           CharCase = ecUpperCase
           ItemIndex = 0
           CanUndoSelText = True
-          TabOrder = 5
+          TabOrder = 4
           Text = 'GERAL'
           Items.Strings = (
             'GERAL'
@@ -502,7 +505,7 @@ object frmPrincipal: TfrmPrincipal
     Align = alTop
     Color = clHotLight
     ParentBackground = False
-    TabOrder = 2
+    TabOrder = 1
     ExplicitWidth = 788
     object Label1: TLabel
       Left = 1
@@ -511,14 +514,14 @@ object frmPrincipal: TfrmPrincipal
       Height = 52
       Align = alClient
       Alignment = taCenter
-      Caption = 'ViaSoft KORP'
+      Caption = 'Estudos'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = 40
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      ExplicitWidth = 216
+      ExplicitWidth = 125
       ExplicitHeight = 40
     end
   end

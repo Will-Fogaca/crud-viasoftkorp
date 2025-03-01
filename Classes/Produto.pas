@@ -44,6 +44,8 @@ type
     function GravarProduto(): Boolean;
     function ExcluirProduto(): Boolean;
     function BuscarProdutoPorEAN(CodEan: String): Boolean;
+    function ListarProdutos() : Boolean;
+
   end;
 
 implementation
@@ -72,6 +74,21 @@ begin
   except
     on E: Exception do
       raise Exception.Create('Erro ao gravar produto: ' + E.Message);
+  end;
+end;
+
+function TProduto.ListarProdutos: Boolean;
+begin
+  try
+    dmPrincipal.cdsListarProdutos.Close;
+    dmPrincipal.cdsListarProdutos.Open;
+    Result:= true;
+
+  except on E:Exception do
+    begin
+      raise Exception.Create('Erro ao listar produtos: ' + E.Message);
+      Result:= false;
+    end;
   end;
 end;
 

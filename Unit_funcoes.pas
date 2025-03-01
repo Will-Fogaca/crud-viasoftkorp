@@ -8,7 +8,7 @@ uses
 procedure FormatarValorMonetario(edt: TEdit);
 procedure FormatarNumero(edt: TEdit);
 procedure FormatarNumeroDecimal(edt: TEdit);
-function ConverterValorMonetarioParaFloat(const valor: string): string;
+function  ConverterValorMonetarioParaFloat(const valor: string): string;
 
 implementation
 

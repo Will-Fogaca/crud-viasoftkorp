@@ -45,15 +45,75 @@ object dmPrincipal: TdmPrincipal
   object cdsListarProdutos: TClientDataSet
     Aggregates = <>
     Params = <>
+    ProviderName = 'dspListarProdutos'
     Left = 336
     Top = 112
+    object cdsListarProdutosID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Required = True
+    end
+    object cdsListarProdutosCOD_EAN: TStringField
+      FieldName = 'COD_EAN'
+      Size = 13
+    end
+    object cdsListarProdutosDS_PRODUTO: TStringField
+      FieldName = 'DS_PRODUTO'
+      Size = 200
+    end
+    object cdsListarProdutosID_DEPTO: TIntegerField
+      FieldName = 'ID_DEPTO'
+    end
+    object cdsListarProdutosDS_NCM: TStringField
+      FieldName = 'DS_NCM'
+      Size = 8
+    end
+    object cdsListarProdutosCD_CFOP_ENTRADA: TStringField
+      FieldName = 'CD_CFOP_ENTRADA'
+      Size = 4
+    end
+    object cdsListarProdutosCD_CFOP_SAIDA: TStringField
+      FieldName = 'CD_CFOP_SAIDA'
+      Size = 4
+    end
+    object cdsListarProdutosVLR_CUSTO: TFMTBCDField
+      FieldName = 'VLR_CUSTO'
+      Precision = 19
+      Size = 4
+    end
+    object cdsListarProdutosVLR_VENDA: TFMTBCDField
+      FieldName = 'VLR_VENDA'
+      Precision = 19
+      Size = 4
+    end
+    object cdsListarProdutosQTD_ESTQ_ATUAL: TFloatField
+      FieldName = 'QTD_ESTQ_ATUAL'
+    end
+    object cdsListarProdutosDS_UNIDADE_MEDIDA: TStringField
+      FieldName = 'DS_UNIDADE_MEDIDA'
+    end
+    object cdsListarProdutosMARGEM_LUCRO: TFloatField
+      FieldName = 'MARGEM_LUCRO'
+    end
+    object cdsListarProdutosDS_OBSERVACAO: TStringField
+      FieldName = 'DS_OBSERVACAO'
+      Size = 100
+    end
+    object cdsListarProdutosDT_INCLUSAO: TSQLTimeStampField
+      FieldName = 'DT_INCLUSAO'
+    end
   end
   object dspListarProdutos: TDataSetProvider
+    DataSet = sqlListarProdutos
     Left = 200
     Top = 112
   end
   object sqlListarProdutos: TSQLQuery
+    SchemaName = 'dbo'
+    MaxBlobSize = -1
     Params = <>
+    SQL.Strings = (
+      'SP_LISTAR_PRODUTOS')
+    SQLConnection = sqlConexao
     Left = 48
     Top = 112
   end
@@ -268,5 +328,10 @@ object dmPrincipal: TdmPrincipal
     StoredProcName = 'SP_CARREGAR_PRODUTO'
     Left = 48
     Top = 176
+  end
+  object dsListarProdutos: TDataSource
+    DataSet = cdsListarProdutos
+    Left = 464
+    Top = 112
   end
 end

@@ -109,6 +109,10 @@
         </DCCReference>
         <DCCReference Include="Classes\Produto.pas"/>
         <DCCReference Include="Unit_funcoes.pas"/>
+        <DCCReference Include="Unit_frmBuscaProduto.pas">
+            <Form>frmBuscaProduto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

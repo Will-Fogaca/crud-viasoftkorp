@@ -31,6 +31,21 @@ type
     cdsCarregarProdutoMARGEM_LUCRO: TFloatField;
     cdsCarregarProdutoDS_OBSERVACAO: TStringField;
     cdsCarregarProdutoDT_INCLUSAO: TSQLTimeStampField;
+    dsListarProdutos: TDataSource;
+    cdsListarProdutosID_PRODUTO: TIntegerField;
+    cdsListarProdutosCOD_EAN: TStringField;
+    cdsListarProdutosDS_PRODUTO: TStringField;
+    cdsListarProdutosID_DEPTO: TIntegerField;
+    cdsListarProdutosDS_NCM: TStringField;
+    cdsListarProdutosCD_CFOP_ENTRADA: TStringField;
+    cdsListarProdutosCD_CFOP_SAIDA: TStringField;
+    cdsListarProdutosVLR_CUSTO: TFMTBCDField;
+    cdsListarProdutosVLR_VENDA: TFMTBCDField;
+    cdsListarProdutosQTD_ESTQ_ATUAL: TFloatField;
+    cdsListarProdutosDS_UNIDADE_MEDIDA: TStringField;
+    cdsListarProdutosMARGEM_LUCRO: TFloatField;
+    cdsListarProdutosDS_OBSERVACAO: TStringField;
+    cdsListarProdutosDT_INCLUSAO: TSQLTimeStampField;
   private
     { Private declarations }
   public

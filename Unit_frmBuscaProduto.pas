@@ -1,0 +1,59 @@
+unit Unit_frmBuscaProduto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, System.ImageList,
+  Vcl.ImgList;
+
+type
+  TfrmBuscaProduto = class(TForm)
+    dbgProdutos: TDBGrid;
+    pnlNavegacao: TPanel;
+    edtFiltro: TEdit;
+    btn_selecionar: TBitBtn;
+    Label1: TLabel;
+    ImageList1: TImageList;
+    procedure dbgProdutosDblClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btn_selecionarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmBuscaProduto: TfrmBuscaProduto;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit_dmPrincipal, Unit_frmPrincipal;
+
+procedure TfrmBuscaProduto.btn_selecionarClick(Sender: TObject);
+begin
+  if dmPrincipal.cdsListarProdutos.Active then
+  begin
+    frmPrincipal.BuscarProdutoCodEan(dmPrincipal.cdsListarProdutosCOD_EAN.AsString);
+    frmBuscaProduto.Close;
+  end;
+end;
+
+procedure TfrmBuscaProduto.dbgProdutosDblClick(Sender: TObject);
+begin
+  btn_selecionar.Click;
+end;
+
+procedure TfrmBuscaProduto.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  dmPrincipal.cdsListarProdutos.Close;
+  frmBuscaProduto:= nil;
+  frmBuscaProduto.Free;
+end;
+
+end.

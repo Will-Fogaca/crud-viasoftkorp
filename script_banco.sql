@@ -1,5 +1,9 @@
-/*SCRIPT EXERCICIO PRATICO VIASOFT KORP*/
+/*
+	SCRIPT CRUD VIASOFT KORP
+		
+*/
 
+--CRIAR A TABELA DE PRODUTO
 
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_produto]') AND type in (N'U'))
 CREATE TABLE tb_produto (
@@ -20,7 +24,8 @@ CREATE TABLE tb_produto (
     fl_ativo BIT DEFAULT 1
 )
 
-
+--PROCEDURE QUE OU IRÁ GRAVAR UM NOVO REGISTRO, OU EDITAR UM JÁ EXISTENTE
+----------------------------------------------------------------------------------------------------
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_GRAVAR_PRODUTO]') AND type in (N'P', N'PC'))
 	DROP PROCEDURE [dbo].[SP_GRAVAR_PRODUTO]
 GO
@@ -38,7 +43,6 @@ CREATE PROCEDURE [dbo].[SP_GRAVAR_PRODUTO]
 	@DS_OBSERVACAO VARCHAR(100),
 	@MARGEM_LUCRO FLOAT
 AS 
-BEGIN
 	IF (SELECT COUNT(*) FROM TB_PRODUTO WHERE COD_EAN = @COD_EAN AND FL_ATIVO = 1) > 0 
 	BEGIN
 		UPDATE 
@@ -92,8 +96,9 @@ BEGIN
 				@MARGEM_LUCRO	
 			)
 	END
-END
 GO
+
+--PROCEDURE QUE DEIXARÁ O PRODUTO INATIVO
 ---------------------------------------------------------------------------------------------------------------------------
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_EXCLUIR_PRODUTO]') AND type in (N'P', N'PC'))
 	DROP PROCEDURE [dbo].[SP_EXCLUIR_PRODUTO]
@@ -109,6 +114,8 @@ AS
 		COD_EAN = @COD_EAN
 		AND FL_ATIVO = 1
 GO
+
+--CARREGAR DADOS DE UM PRODUTO ESPECÍFICO
 ---------------------------------------------------------------------------------------------------------------------------
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_CARREGAR_PRODUTO]') AND type in (N'P', N'PC'))
 	DROP PROCEDURE [dbo].[SP_CARREGAR_PRODUTO]
@@ -138,6 +145,7 @@ AS
 		AND COD_EAN = @COD_EAN
 GO
 
+--LISTAR TODOS OS PRODUTOS
 ---------------------------------------------------------------------------------------------------------------------------
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_LISTAR_PRODUTOS]') AND type in (N'P', N'PC'))
 	DROP PROCEDURE [dbo].[SP_LISTAR_PRODUTOS]
